@@ -1,0 +1,194 @@
+.residue-page {
+  min-height: 100vh;
+
+  padding:
+    50px 20px
+    80px;
+
+  background:
+    var(--background);
+}
+
+.residue-container {
+  width:
+    min(
+      760px,
+      100%
+    );
+
+  margin: auto;
+}
+
+.residue-header {
+  margin-bottom:
+    36px;
+}
+
+.residue-header h1 {
+  margin: 0;
+
+  color:
+    var(--brand-navy);
+
+  font-size:
+    clamp(
+      40px,
+      8vw,
+      64px
+    );
+
+  line-height: 1;
+
+  letter-spacing:
+    -0.04em;
+}
+
+.residue-question {
+  margin-top: 18px;
+
+  color:
+    var(--text-muted);
+
+  font-size: 20px;
+
+  line-height: 1.5;
+}
+
+.answer-main {
+  margin-bottom: 20px;
+
+  padding: 32px;
+
+  border-radius:
+    24px;
+
+  background:
+    var(--brand-sky);
+}
+
+.answer-status {
+  display:
+    inline-block;
+
+  margin-bottom: 14px;
+
+  color:
+    var(--brand-cyan);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    0.12em;
+
+  text-transform:
+    uppercase;
+}
+
+.answer-main h2,
+.residue-block h2 {
+  margin:
+    0 0 12px;
+
+  color:
+    var(--brand-navy);
+}
+
+.answer-main p,
+.residue-block p {
+  margin: 0;
+
+  line-height: 1.65;
+}
+
+.residue-block {
+  padding:
+    28px 0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+}
+
+.residue-block strong {
+  display:
+    inline-block;
+
+  margin-bottom: 12px;
+
+  color:
+    var(--brand-navy);
+}
+
+.warning-block {
+  margin-top: 20px;
+
+  padding: 26px;
+
+  border: 0;
+
+  border-radius:
+    20px;
+
+  background:
+    var(--danger-bg);
+}
+
+.route-block {
+  margin-top: 20px;
+
+  padding: 26px;
+
+  border: 0;
+
+  border-radius:
+    20px;
+
+  background:
+    var(--brand-sky);
+}
+
+.source-block {
+  margin-top: 40px;
+
+  padding-top: 24px;
+
+  border-top:
+    1px solid
+    var(--border);
+
+  color:
+    var(--text-muted);
+
+  font-size: 13px;
+}
+
+.source-block p {
+  margin: 6px 0;
+}
+
+@media (max-width: 600px) {
+  .residue-page {
+    padding:
+      30px 16px
+      60px;
+  }
+
+  .residue-header h1 {
+    font-size: 42px;
+  }
+
+  .residue-question {
+    font-size: 17px;
+  }
+
+  .answer-main {
+    padding: 24px;
+  }
+
+  .warning-block,
+  .route-block {
+    padding: 22px;
+  }
+}

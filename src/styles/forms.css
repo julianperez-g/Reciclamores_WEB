@@ -1,0 +1,354 @@
+.not-found-page {
+  min-height: 100vh;
+
+  padding:
+    50px 20px
+    90px;
+
+  background:
+    var(--background);
+}
+
+.not-found-container {
+  width:
+    min(
+      760px,
+      100%
+    );
+
+  margin: 0 auto;
+}
+
+.not-found-header {
+  margin-bottom: 42px;
+}
+
+.not-found-header h1 {
+  max-width: 650px;
+
+  margin: 0;
+
+  color:
+    var(--brand-navy);
+
+  font-size:
+    clamp(
+      40px,
+      7vw,
+      64px
+    );
+
+  line-height: 1;
+
+  letter-spacing:
+    -0.04em;
+}
+
+.not-found-header > p:last-child {
+  max-width: 620px;
+
+  margin:
+    20px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 18px;
+
+  line-height: 1.6;
+}
+
+.not-found-form {
+  padding: 32px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    24px;
+
+  background:
+    var(--surface);
+}
+
+.not-found-form label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color:
+    var(--brand-navy);
+
+  font-size: 16px;
+
+  font-weight: 700;
+}
+
+.not-found-input-group {
+  display: flex;
+
+  gap: 12px;
+}
+
+.not-found-input-group input {
+  flex: 1;
+
+  min-width: 0;
+  height: 58px;
+
+  padding:
+    0 18px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    16px;
+
+  outline: none;
+
+  color:
+    var(--text);
+
+  background: white;
+}
+
+.not-found-input-group input:focus {
+  border-color:
+    var(--brand-cyan);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(
+      18,
+      191,
+      208,
+      0.1
+    );
+}
+
+.not-found-input-group button {
+  min-width: 125px;
+  height: 58px;
+
+  padding:
+    0 22px;
+
+  border: 0;
+
+  border-radius:
+    16px;
+
+  color: white;
+
+  font-weight: 700;
+
+  background:
+    var(--brand-navy);
+
+  cursor: pointer;
+}
+
+.not-found-input-group button:disabled {
+  opacity: 0.5;
+
+  cursor:
+    not-allowed;
+}
+
+.not-found-counter {
+  display: flex;
+
+  justify-content:
+    flex-end;
+
+  margin-top: 8px;
+
+  color: #8799a6;
+
+  font-size: 12px;
+}
+
+.not-found-error {
+  margin:
+    16px 0 0;
+
+  padding:
+    13px 15px;
+
+  border-radius:
+    12px;
+
+  color:
+    var(--danger-text);
+
+  font-size: 14px;
+
+  background:
+    var(--danger-bg);
+}
+
+.not-found-privacy {
+  margin-top: 28px;
+
+  padding:
+    22px 24px;
+
+  border-radius:
+    18px;
+
+  background:
+    var(--brand-sky);
+}
+
+.not-found-privacy strong {
+  color:
+    var(--brand-navy);
+}
+
+.not-found-privacy p {
+  margin:
+    7px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 14px;
+
+  line-height: 1.55;
+}
+
+.not-found-success {
+  display: flex;
+
+  align-items:
+    flex-start;
+
+  gap: 22px;
+
+  padding: 32px;
+
+  border-radius:
+    24px;
+
+  background:
+    var(--brand-sky);
+}
+
+.not-found-success-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    50%;
+
+  color: white;
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+  background:
+    var(--brand-cyan);
+}
+
+.not-found-success-label {
+  margin:
+    2px 0 8px;
+
+  color:
+    var(--brand-cyan);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    0.13em;
+}
+
+.not-found-success h2 {
+  margin:
+    0 0 10px;
+
+  color:
+    var(--brand-navy);
+
+  font-size: 30px;
+}
+
+.not-found-success p {
+  margin: 0;
+
+  color:
+    var(--text-muted);
+
+  line-height: 1.6;
+}
+
+.not-found-home-button {
+  display:
+    inline-flex;
+
+  margin-top: 22px;
+
+  padding:
+    12px 18px;
+
+  border-radius:
+    999px;
+
+  color: white;
+
+  font-weight: 700;
+
+  background:
+    var(--brand-navy);
+}
+
+@media (max-width: 600px) {
+  .not-found-page {
+    padding:
+      30px 16px
+      60px;
+  }
+
+  .not-found-header h1 {
+    font-size: 42px;
+  }
+
+  .not-found-header > p:last-child {
+    font-size: 16px;
+  }
+
+  .not-found-form {
+    padding: 22px;
+  }
+
+  .not-found-input-group {
+    flex-direction:
+      column;
+  }
+
+  .not-found-input-group button {
+    width: 100%;
+  }
+
+  .not-found-success {
+    flex-direction:
+      column;
+
+    padding: 24px;
+  }
+}

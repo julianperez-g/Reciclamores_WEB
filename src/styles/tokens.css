@@ -1,0 +1,21 @@
+:root {
+  --brand-navy: #10365d;
+  --brand-cyan: #12bfd0;
+  --brand-sky: #dff5fa;
+
+  --background: #ffffff;
+  --surface: #f7fbfc;
+
+  --text: #17324d;
+  --text-muted: #647786;
+
+  --border: #dcebef;
+
+  --danger-bg: #fff1f1;
+  --danger-text: #a33838;
+
+  --radius-lg: 24px;
+  --radius-md: 18px;
+
+  --container-width: 1120px;
+}
