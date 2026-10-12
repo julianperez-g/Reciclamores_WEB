@@ -6,70 +6,79 @@
     90px;
 
   background:
-    var(--background);
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #fbfdfe
+    );
 }
 
 .not-found-container {
   width:
     min(
-      760px,
+      820px,
       100%
     );
 
   margin: 0 auto;
 }
 
+
+/* HEADER */
+
 .not-found-header {
-  margin-bottom: 42px;
+  margin-bottom: 40px;
 }
 
 .not-found-header h1 {
-  max-width: 650px;
+  max-width: 680px;
 
   margin: 0;
 
-  color:
-    var(--brand-navy);
+  color: var(--brand-navy);
 
   font-size:
     clamp(
-      40px,
+      48px,
       7vw,
-      64px
+      70px
     );
 
-  line-height: 1;
+  font-weight: 800;
 
-  letter-spacing:
-    -0.04em;
+  line-height: 0.97;
+
+  letter-spacing: -0.055em;
 }
 
 .not-found-header > p:last-child {
   max-width: 620px;
 
   margin:
-    20px 0 0;
+    21px 0 0;
 
-  color:
-    var(--text-muted);
+  color: var(--text-muted);
 
-  font-size: 18px;
+  font-size: 17px;
 
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
+
+/* FORM */
+
 .not-found-form {
-  padding: 32px;
+  padding: 34px;
 
   border:
     1px solid
     var(--border);
 
-  border-radius:
-    24px;
+  border-radius: var(--radius-lg);
 
-  background:
-    var(--surface);
+  background: white;
+
+  box-shadow: var(--shadow-sm);
 }
 
 .not-found-form label {
@@ -77,12 +86,10 @@
 
   margin-bottom: 12px;
 
-  color:
-    var(--brand-navy);
+  color: var(--brand-navy);
 
-  font-size: 16px;
-
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 750;
 }
 
 .not-found-input-group {
@@ -97,27 +104,30 @@
   min-width: 0;
   height: 58px;
 
-  padding:
-    0 18px;
+  padding: 0 18px;
 
   border:
     1px solid
     var(--border);
 
-  border-radius:
-    16px;
+  border-radius: 16px;
 
   outline: none;
 
-  color:
-    var(--text);
+  color: var(--text);
 
-  background: white;
+  background: var(--surface-soft);
+
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .not-found-input-group input:focus {
-  border-color:
-    var(--brand-cyan);
+  border-color: var(--brand-cyan);
+
+  background: white;
 
   box-shadow:
     0 0 0 4px
@@ -125,50 +135,64 @@
       18,
       191,
       208,
-      0.1
+      0.09
     );
 }
 
 .not-found-input-group button {
-  min-width: 125px;
+  min-width: 130px;
   height: 58px;
 
-  padding:
-    0 22px;
+  padding: 0 22px;
 
   border: 0;
 
-  border-radius:
-    16px;
+  border-radius: 16px;
 
   color: white;
 
-  font-weight: 700;
+  font-weight: 750;
 
-  background:
-    var(--brand-navy);
+  background: var(--brand-navy);
+
+  box-shadow:
+    0 8px 18px
+    rgba(
+      16,
+      54,
+      93,
+      0.16
+    );
 
   cursor: pointer;
+
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.not-found-input-group button:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  background: var(--brand-navy-dark);
 }
 
 .not-found-input-group button:disabled {
   opacity: 0.5;
 
-  cursor:
-    not-allowed;
+  cursor: not-allowed;
 }
 
 .not-found-counter {
   display: flex;
 
-  justify-content:
-    flex-end;
+  justify-content: flex-end;
 
-  margin-top: 8px;
+  margin-top: 9px;
 
-  color: #8799a6;
+  color: var(--text-soft);
 
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .not-found-error {
@@ -178,154 +202,156 @@
   padding:
     13px 15px;
 
-  border-radius:
-    12px;
+  border-radius: 12px;
 
-  color:
-    var(--danger-text);
+  color: var(--danger-text);
 
-  font-size: 14px;
+  font-size: 13px;
 
-  background:
-    var(--danger-bg);
+  background: var(--danger-bg);
 }
 
+
+/* PRIVACIDAD */
+
 .not-found-privacy {
-  margin-top: 28px;
+  margin-top: 24px;
 
   padding:
     22px 24px;
 
-  border-radius:
-    18px;
+  border-radius: 18px;
 
-  background:
-    var(--brand-sky);
+  background: var(--brand-sky-soft);
 }
 
 .not-found-privacy strong {
-  color:
-    var(--brand-navy);
+  color: var(--brand-navy);
 }
 
 .not-found-privacy p {
   margin:
     7px 0 0;
 
-  color:
-    var(--text-muted);
+  color: var(--text-muted);
 
-  font-size: 14px;
+  font-size: 13px;
 
-  line-height: 1.55;
+  line-height: 1.6;
 }
+
+
+/* SUCCESS */
 
 .not-found-success {
   display: flex;
 
-  align-items:
-    flex-start;
+  align-items: flex-start;
 
   gap: 22px;
 
-  padding: 32px;
+  padding: 34px;
 
-  border-radius:
-    24px;
+  border:
+    1px solid
+    rgba(
+      18,
+      191,
+      208,
+      0.14
+    );
+
+  border-radius: var(--radius-lg);
 
   background:
-    var(--brand-sky);
+    linear-gradient(
+      135deg,
+      var(--brand-sky),
+      #edfafd
+    );
+
+  box-shadow: var(--shadow-sm);
 }
 
 .not-found-success-icon {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
 
   flex-shrink: 0;
 
   display: flex;
 
   align-items: center;
+  justify-content: center;
 
-  justify-content:
-    center;
-
-  border-radius:
-    50%;
+  border-radius: 50%;
 
   color: white;
 
   font-size: 22px;
-
   font-weight: 800;
 
-  background:
-    var(--brand-cyan);
+  background: var(--brand-cyan);
 }
 
 .not-found-success-label {
   margin:
     2px 0 8px;
 
-  color:
-    var(--brand-cyan);
+  color: var(--brand-cyan-dark);
 
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: 850;
 
-  font-weight: 800;
-
-  letter-spacing:
-    0.13em;
+  letter-spacing: 0.15em;
 }
 
 .not-found-success h2 {
   margin:
     0 0 10px;
 
-  color:
-    var(--brand-navy);
+  color: var(--brand-navy);
 
   font-size: 30px;
+
+  letter-spacing: -0.03em;
 }
 
 .not-found-success p {
   margin: 0;
 
-  color:
-    var(--text-muted);
+  color: var(--text-muted);
 
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .not-found-home-button {
-  display:
-    inline-flex;
+  display: inline-flex;
 
   margin-top: 22px;
 
   padding:
     12px 18px;
 
-  border-radius:
-    999px;
+  border-radius: var(--radius-pill);
 
   color: white;
 
-  font-weight: 700;
+  font-weight: 750;
 
-  background:
-    var(--brand-navy);
+  background: var(--brand-navy);
 }
+
 
 @media (max-width: 600px) {
   .not-found-page {
     padding:
       30px 16px
-      60px;
+      70px;
   }
 
   .not-found-header h1 {
-    font-size: 42px;
+    font-size: 44px;
   }
 
   .not-found-header > p:last-child {
@@ -333,12 +359,11 @@
   }
 
   .not-found-form {
-    padding: 22px;
+    padding: 23px;
   }
 
   .not-found-input-group {
-    flex-direction:
-      column;
+    flex-direction: column;
   }
 
   .not-found-input-group button {
@@ -346,9 +371,8 @@
   }
 
   .not-found-success {
-    flex-direction:
-      column;
+    flex-direction: column;
 
-    padding: 24px;
+    padding: 25px;
   }
 }
