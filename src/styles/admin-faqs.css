@@ -1,0 +1,637 @@
+/* =========================================================
+   FAQS - RESUMEN
+   ========================================================= */
+
+.admin-faq-summary {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap: 16px;
+
+  margin-bottom: 22px;
+}
+
+
+.admin-faq-summary article {
+  min-height: 145px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 22px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 20px;
+
+  background: white;
+
+  box-shadow:
+    var(--shadow-xs);
+}
+
+
+.admin-faq-summary span {
+  color:
+    var(--text-soft);
+
+  font-size: 9px;
+  font-weight: 850;
+
+  letter-spacing:
+    0.12em;
+}
+
+
+.admin-faq-summary strong {
+  margin-top: auto;
+
+  color:
+    var(--brand-navy);
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  letter-spacing:
+    -0.05em;
+}
+
+
+.admin-faq-summary p {
+  margin:
+    7px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.admin-faq-toolbar {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 20px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 20px;
+
+  background: white;
+
+  box-shadow:
+    var(--shadow-xs);
+}
+
+
+/* =========================================================
+   LISTADO
+   ========================================================= */
+
+.admin-faq-list {
+  overflow: hidden;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 22px;
+
+  background: white;
+
+  box-shadow:
+    var(--shadow-xs);
+}
+
+
+.admin-faq-row {
+  min-height: 110px;
+
+  display: grid;
+
+  grid-template-columns:
+    70px
+    minmax(
+      260px,
+      1fr
+    )
+    auto
+    auto;
+
+  align-items: center;
+
+  gap: 22px;
+
+  padding:
+    18px 20px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  transition:
+    background
+    var(--transition-fast);
+}
+
+
+.admin-faq-row:last-child {
+  border-bottom: 0;
+}
+
+
+.admin-faq-row:hover {
+  background:
+    var(--surface-soft);
+}
+
+
+/* =========================================================
+   ORDEN
+   ========================================================= */
+
+.admin-faq-order {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.admin-faq-order span {
+  color:
+    var(--text-soft);
+
+  font-size: 7px;
+  font-weight: 850;
+
+  letter-spacing:
+    0.1em;
+}
+
+
+.admin-faq-order strong {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color:
+    var(--brand-navy);
+
+  font-size: 11px;
+
+  background:
+    var(--brand-sky);
+}
+
+
+/* =========================================================
+   CONTENIDO
+   ========================================================= */
+
+.admin-faq-content {
+  min-width: 0;
+}
+
+
+.admin-faq-content > strong {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color:
+    var(--brand-navy);
+
+  font-size: 14px;
+
+  line-height: 1.4;
+}
+
+
+.admin-faq-content p {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.55;
+
+  -webkit-box-orient:
+    vertical;
+
+  -webkit-line-clamp:
+    2;
+}
+
+
+/* =========================================================
+   ACCIONES
+   ========================================================= */
+
+.admin-faq-status {
+  display: flex;
+
+  justify-content:
+    flex-end;
+}
+
+
+.admin-faq-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+.admin-faq-toggle-button {
+  min-height: 38px;
+
+  padding:
+    0 13px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    var(--radius-pill);
+
+  color:
+    var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  background: white;
+
+  cursor: pointer;
+}
+
+
+.admin-faq-toggle-button:hover:not(:disabled) {
+  border-color:
+    var(--brand-cyan);
+}
+
+
+.admin-faq-toggle-button:disabled {
+  opacity: 0.55;
+
+  cursor: wait;
+}
+
+
+/* =========================================================
+   FORMULARIO FAQ
+   ========================================================= */
+
+.admin-faq-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  padding-bottom: 110px;
+}
+
+
+.admin-faq-form
+.admin-form-section
+.admin-field {
+  margin-bottom: 20px;
+}
+
+
+.admin-faq-form
+.admin-field textarea {
+  width: 100%;
+
+  padding:
+    14px 15px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 15px;
+
+  outline: 0;
+
+  color:
+    var(--text-strong);
+
+  font-size: 13px;
+
+  line-height: 1.65;
+
+  background:
+    var(--surface-soft);
+
+  resize: vertical;
+}
+
+
+.admin-faq-form
+.admin-field textarea:focus {
+  border-color:
+    var(--brand-cyan);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(
+      18,
+      191,
+      208,
+      0.08
+    );
+}
+
+
+.admin-faq-publication-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      180px,
+      0.35fr
+    )
+    minmax(
+      300px,
+      1fr
+    );
+
+  gap: 20px;
+
+  align-items: stretch;
+}
+
+
+.admin-faq-publication-grid
+.admin-field {
+  margin-bottom: 0;
+}
+
+
+.admin-faq-active-card {
+  min-height: 100px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding:
+    18px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 17px;
+
+  background:
+    var(--surface-soft);
+
+  cursor: pointer;
+}
+
+
+.admin-faq-active-card input {
+  width: 19px;
+  height: 19px;
+
+  flex-shrink: 0;
+
+  accent-color:
+    var(--brand-cyan);
+}
+
+
+.admin-faq-active-card > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+
+.admin-faq-active-card strong {
+  color:
+    var(--brand-navy);
+
+  font-size: 13px;
+}
+
+
+.admin-faq-active-card span {
+  color:
+    var(--text-muted);
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   BANNER
+   ========================================================= */
+
+.admin-faq-info-banner {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 20px;
+
+  margin-bottom: 18px;
+
+  padding:
+    18px 20px;
+
+  border:
+    1px solid
+    rgba(
+      18,
+      191,
+      208,
+      0.25
+    );
+
+  border-radius: 17px;
+
+  background:
+    var(--brand-sky-soft);
+}
+
+
+.admin-faq-info-banner strong {
+  flex-shrink: 0;
+
+  color:
+    var(--brand-navy);
+
+  font-size: 12px;
+}
+
+
+.admin-faq-info-banner p {
+  margin: 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+  .admin-faq-row {
+    grid-template-columns:
+      60px
+      minmax(
+        220px,
+        1fr
+      )
+      auto;
+  }
+
+
+  .admin-faq-status {
+    display: none;
+  }
+
+}
+
+
+@media (max-width: 800px) {
+
+  .admin-faq-summary {
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+
+    gap: 10px;
+  }
+
+
+  .admin-faq-toolbar {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+
+  .admin-faq-row {
+    grid-template-columns:
+      50px
+      1fr;
+  }
+
+
+  .admin-faq-actions {
+    grid-column:
+      2;
+
+    justify-content:
+      flex-start;
+  }
+
+
+  .admin-faq-publication-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .admin-faq-summary {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+
+  .admin-faq-summary article:first-child {
+    grid-column:
+      1 / -1;
+  }
+
+
+  .admin-faq-row {
+    gap: 14px;
+
+    padding:
+      16px;
+  }
+
+
+  .admin-faq-info-banner {
+    flex-direction:
+      column;
+
+    gap: 7px;
+  }
+
+
+  .admin-faq-actions {
+    flex-wrap: wrap;
+  }
+
+}

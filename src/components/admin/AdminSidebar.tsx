@@ -7,7 +7,10 @@ import {
   useRouter,
 } from "next/navigation";
 
-import { supabase } from "@/lib/supabase/client";
+import {
+  supabase,
+} from "@/lib/supabase/client";
+
 
 export default function AdminSidebar() {
   const pathname =
@@ -15,6 +18,7 @@ export default function AdminSidebar() {
 
   const router =
     useRouter();
+
 
   async function cerrarSesion() {
     await supabase.auth.signOut();
@@ -26,6 +30,7 @@ export default function AdminSidebar() {
     router.refresh();
   }
 
+
   function navClass(
     route: string
   ) {
@@ -36,14 +41,18 @@ export default function AdminSidebar() {
             route
           );
 
+
     return activo
       ? "admin-nav-item admin-nav-item-active"
       : "admin-nav-item";
   }
 
+
   return (
     <aside className="admin-sidebar">
+
       <div className="admin-sidebar-brand">
+
         <strong>
           Reciclamores
         </strong>
@@ -51,9 +60,12 @@ export default function AdminSidebar() {
         <span>
           CMS
         </span>
+
       </div>
 
+
       <nav className="admin-nav">
+
         <Link
           href="/admin"
           className={
@@ -65,19 +77,18 @@ export default function AdminSidebar() {
           Dashboard
         </Link>
 
-        <button
-          type="button"
-          className="admin-nav-item admin-nav-item-disabled"
-          disabled
-        >
-          <span>
-            Residuos
-          </span>
 
-          <small>
-            Próximo
-          </small>
-        </button>
+        <Link
+          href="/admin/residuos"
+          className={
+            navClass(
+              "/admin/residuos"
+            )
+          }
+        >
+          Residuos
+        </Link>
+
 
         <Link
           href="/admin/necesidades"
@@ -90,20 +101,20 @@ export default function AdminSidebar() {
           Necesidades
         </Link>
 
-        <button
-          type="button"
-          className="admin-nav-item admin-nav-item-disabled"
-          disabled
-        >
-          <span>
-            Preguntas frecuentes
-          </span>
 
-          <small>
-            Próximo
-          </small>
-        </button>
+        <Link
+          href="/admin/faqs"
+          className={
+            navClass(
+              "/admin/faqs"
+            )
+          }
+        >
+          Preguntas frecuentes
+        </Link>
+
       </nav>
+
 
       <button
         type="button"
@@ -114,6 +125,7 @@ export default function AdminSidebar() {
       >
         Cerrar sesión
       </button>
+
     </aside>
   );
 }

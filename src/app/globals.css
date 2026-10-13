@@ -9,4 +9,11 @@
 @import "../styles/residue.css";
 @import "../styles/faq.css";
 @import "../styles/forms.css";
+
 @import "../styles/admin.css";
+@import "../styles/admin-residuos.css";
+@import "../styles/admin-flujo.css";
+@import "../styles/admin-delete.css";
+@import "../styles/admin-images.css";
+@import "../styles/admin-faqs.css";
+@import "../styles/admin-login.css";

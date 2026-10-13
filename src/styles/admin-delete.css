@@ -1,0 +1,187 @@
+/* =========================================================
+   ELIMINACIÓN DE RESIDUOS
+   ========================================================= */
+
+.admin-danger-zone {
+  margin-top: 12px;
+
+  padding: 28px;
+
+  border:
+    1px solid
+    #f1caca;
+
+  border-radius:
+    22px;
+
+  background:
+    #fffafa;
+}
+
+
+.admin-danger-zone-heading {
+  margin-bottom: 20px;
+}
+
+
+.admin-danger-zone-heading span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color:
+    #b85b5b;
+
+  font-size: 9px;
+  font-weight: 850;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+.admin-danger-zone-heading h2 {
+  margin: 0;
+
+  color:
+    #8f3636;
+
+  font-size: 20px;
+
+  letter-spacing:
+    -0.03em;
+}
+
+
+.admin-delete-area {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  align-items: center;
+
+  gap: 24px;
+
+  padding-top: 20px;
+
+  border-top:
+    1px solid
+    #f3d9d9;
+}
+
+
+.admin-delete-area strong {
+  color:
+    var(--brand-navy);
+
+  font-size: 13px;
+}
+
+
+.admin-delete-area p {
+  max-width: 600px;
+
+  margin:
+    5px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.55;
+}
+
+
+.admin-delete-button {
+  min-height: 42px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    0 17px;
+
+  border:
+    1px solid
+    #d96c6c;
+
+  border-radius:
+    var(--radius-pill);
+
+  color:
+    #a43838;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  background: white;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+
+.admin-delete-button:hover:not(:disabled) {
+  transform:
+    translateY(-1px);
+
+  color: white;
+
+  background:
+    #b84a4a;
+}
+
+
+.admin-delete-button:disabled {
+  opacity: 0.55;
+
+  cursor: wait;
+}
+
+
+.admin-delete-error {
+  grid-column:
+    1 / -1;
+
+  padding:
+    12px 14px;
+
+  border-radius:
+    12px;
+
+  color:
+    var(--danger-text);
+
+  font-size: 11px;
+
+  background:
+    var(--danger-bg);
+}
+
+
+@media (max-width: 650px) {
+
+  .admin-delete-area {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .admin-delete-button {
+    width: 100%;
+  }
+
+}

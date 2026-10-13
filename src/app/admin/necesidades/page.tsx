@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   useEffect,
   useMemo,
@@ -31,6 +33,15 @@ type Necesidad = {
   total_busquedas: number;
   primera_busqueda: string;
   ultima_busqueda: string;
+
+  residuo_relacionado_id:
+    string | null;
+
+  residuo_relacionado_nombre:
+    string | null;
+
+  residuo_estado_publicacion:
+    string | null;
 };
 
 
@@ -48,6 +59,15 @@ type NecesidadRpcRow = {
     string | null;
 
   ultima_busqueda:
+    string | null;
+
+  residuo_relacionado_id:
+    string | null;
+
+  residuo_relacionado_nombre:
+    string | null;
+
+  residuo_estado_publicacion:
     string | null;
 };
 
@@ -86,6 +106,7 @@ export default function NecesidadesPage() {
   const router =
     useRouter();
 
+
   const [
     admin,
     setAdmin,
@@ -93,6 +114,7 @@ export default function NecesidadesPage() {
     useState<AdminProfile | null>(
       null
     );
+
 
   const [
     necesidades,
@@ -102,17 +124,20 @@ export default function NecesidadesPage() {
       []
     );
 
+
   const [
     query,
     setQuery,
   ] =
     useState("");
 
+
   const [
     loading,
     setLoading,
   ] =
     useState(true);
+
 
   const [
     error,
@@ -154,7 +179,7 @@ export default function NecesidadesPage() {
         error:
           necesidadesError,
       } = await supabase.rpc(
-        "get_necesidades_admin",
+        "get_necesidades_admin_v2",
         {
           p_limite: 500,
         }
@@ -226,6 +251,21 @@ export default function NecesidadesPage() {
                   .ultima_busqueda ??
                   ""
               ),
+
+            residuo_relacionado_id:
+              item
+                .residuo_relacionado_id ??
+              null,
+
+            residuo_relacionado_nombre:
+              item
+                .residuo_relacionado_nombre ??
+              null,
+
+            residuo_estado_publicacion:
+              item
+                .residuo_estado_publicacion ??
+              null,
           })
         )
       );
@@ -302,6 +342,7 @@ export default function NecesidadesPage() {
 
   return (
     <main className="admin-page">
+
       <AdminSidebar />
 
       <section className="admin-main">
@@ -316,6 +357,7 @@ export default function NecesidadesPage() {
               Necesidades
             </h1>
           </div>
+
 
           <div className="admin-user">
             <span>
@@ -371,9 +413,10 @@ export default function NecesidadesPage() {
             </strong>
 
             <p>
-              Los términos con más búsquedas
-              deberían revisarse primero al
-              decidir nuevas fichas.
+              Crear una ficha no elimina la
+              necesidad inmediatamente. Se
+              considera resuelta cuando la
+              ficha queda validada y publicada.
             </p>
           </div>
 
@@ -394,7 +437,8 @@ export default function NecesidadesPage() {
 
               <p>
                 Los resultados están ordenados
-                desde los términos más buscados.
+                desde los términos con mayor
+                demanda.
               </p>
             </div>
           </div>
@@ -436,8 +480,7 @@ export default function NecesidadesPage() {
             {
               resultados.length
             }{" "}
-            {resultados.length ===
-            1
+            {resultados.length === 1
               ? "necesidad"
               : "necesidades"}
           </div>
@@ -462,6 +505,10 @@ export default function NecesidadesPage() {
                 <span>
                   Última
                 </span>
+
+                <span>
+                  Acción
+                </span>
               </div>
 
 
@@ -472,42 +519,102 @@ export default function NecesidadesPage() {
                   <article
                     className="admin-needs-table-row"
                     key={
-                      necesidad.texto_normalizado
+                      necesidad
+                        .texto_normalizado
                     }
                   >
+
                     <div className="admin-needs-term">
                       <strong>
                         {
-                          necesidad.texto_muestra
+                          necesidad
+                            .texto_muestra
                         }
                       </strong>
 
                       <span>
                         {
-                          necesidad.texto_normalizado
+                          necesidad
+                            .texto_normalizado
                         }
                       </span>
                     </div>
 
+
                     <div className="admin-needs-number">
                       <strong>
                         {
-                          necesidad.total_busquedas
+                          necesidad
+                            .total_busquedas
                         }
                       </strong>
                     </div>
 
-                    <span className="admin-needs-date">
-                      {formatearFecha(
-                        necesidad.primera_busqueda
-                      )}
-                    </span>
 
                     <span className="admin-needs-date">
                       {formatearFecha(
-                        necesidad.ultima_busqueda
+                        necesidad
+                          .primera_busqueda
                       )}
                     </span>
+
+
+                    <span className="admin-needs-date">
+                      {formatearFecha(
+                        necesidad
+                          .ultima_busqueda
+                      )}
+                    </span>
+
+
+                    <div className="admin-need-action">
+
+                      {necesidad
+                        .residuo_relacionado_id ? (
+
+                        <Link
+                          href={
+                            `/admin/residuos/${
+                              necesidad
+                                .residuo_relacionado_id
+                            }/editar`
+                          }
+                          className="admin-need-linked-button"
+                        >
+                          <span>
+                            Borrador creado
+                          </span>
+
+                          <strong>
+                            Editar →
+                          </strong>
+                        </Link>
+
+                      ) : (
+
+                        <Link
+                          href={
+                            `/admin/residuos/nuevo?nombre=${
+                              encodeURIComponent(
+                                necesidad
+                                  .texto_muestra
+                              )
+                            }&necesidad=${
+                              encodeURIComponent(
+                                necesidad
+                                  .texto_normalizado
+                              )
+                            }`
+                          }
+                          className="admin-need-create-button"
+                        >
+                          Crear ficha →
+                        </Link>
+
+                      )}
+
+                    </div>
+
                   </article>
                 )
               )}
@@ -516,17 +623,18 @@ export default function NecesidadesPage() {
           ) : (
             <div className="admin-empty-state">
               <span>
-                ⌕
+                ✓
               </span>
 
               <div>
                 <strong>
-                  No encontramos resultados
+                  No hay necesidades pendientes
                 </strong>
 
                 <p>
-                  Prueba con otro término de
-                  búsqueda.
+                  Todas las necesidades
+                  detectadas ya fueron
+                  gestionadas.
                 </p>
               </div>
             </div>
