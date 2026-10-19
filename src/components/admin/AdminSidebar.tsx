@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -51,80 +52,143 @@ export default function AdminSidebar() {
   return (
     <aside className="admin-sidebar">
 
-      <div className="admin-sidebar-brand">
+      <div className="admin-sidebar-top">
 
-        <strong>
-          Reciclamores
-        </strong>
+        <Link
+          href="/admin"
+          className="admin-sidebar-brand"
+        >
+          <Image
+            src="/brand/reciclamores-logo.png"
+            alt="Reciclamores ONG"
+            width={210}
+            height={80}
+            priority
+          />
 
-        <span>
-          CMS
-        </span>
+          <span>
+            CMS
+          </span>
+        </Link>
+
+
+        <p className="admin-sidebar-label">
+          CONTENIDO
+        </p>
+
+
+        <nav className="admin-nav">
+
+          <Link
+            href="/admin"
+            className={
+              navClass(
+                "/admin"
+              )
+            }
+          >
+            <span className="admin-nav-index">
+              01
+            </span>
+
+            <span>
+              Dashboard
+            </span>
+          </Link>
+
+
+          <Link
+            href="/admin/residuos"
+            className={
+              navClass(
+                "/admin/residuos"
+              )
+            }
+          >
+            <span className="admin-nav-index">
+              02
+            </span>
+
+            <span>
+              Residuos
+            </span>
+          </Link>
+
+
+          <Link
+            href="/admin/necesidades"
+            className={
+              navClass(
+                "/admin/necesidades"
+              )
+            }
+          >
+            <span className="admin-nav-index">
+              03
+            </span>
+
+            <span>
+              Necesidades
+            </span>
+          </Link>
+
+
+          <Link
+            href="/admin/faqs"
+            className={
+              navClass(
+                "/admin/faqs"
+              )
+            }
+          >
+            <span className="admin-nav-index">
+              04
+            </span>
+
+            <span>
+              Preguntas
+            </span>
+          </Link>
+
+        </nav>
 
       </div>
 
 
-      <nav className="admin-nav">
+      <div className="admin-sidebar-bottom">
 
         <Link
-          href="/admin"
-          className={
-            navClass(
-              "/admin"
-            )
-          }
+          href="/"
+          className="admin-sidebar-public"
+          target="_blank"
         >
-          Dashboard
+          <span>
+            Ver guía pública
+          </span>
+
+          <b>
+            ↗
+          </b>
         </Link>
 
 
-        <Link
-          href="/admin/residuos"
-          className={
-            navClass(
-              "/admin/residuos"
-            )
+        <button
+          type="button"
+          className="admin-logout-button"
+          onClick={
+            cerrarSesion
           }
         >
-          Residuos
-        </Link>
+          <span>
+            Cerrar sesión
+          </span>
 
+          <b>
+            →
+          </b>
+        </button>
 
-        <Link
-          href="/admin/necesidades"
-          className={
-            navClass(
-              "/admin/necesidades"
-            )
-          }
-        >
-          Necesidades
-        </Link>
-
-
-        <Link
-          href="/admin/faqs"
-          className={
-            navClass(
-              "/admin/faqs"
-            )
-          }
-        >
-          Preguntas frecuentes
-        </Link>
-
-      </nav>
-
-
-      <button
-        type="button"
-        className="admin-logout-button"
-        onClick={
-          cerrarSesion
-        }
-      >
-        Cerrar sesión
-      </button>
+      </div>
 
     </aside>
   );

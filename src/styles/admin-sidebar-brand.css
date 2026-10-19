@@ -1,0 +1,283 @@
+/* =========================================================
+   RECICLAMORES CMS
+   BRAND REFRESH DEL SIDEBAR
+
+   IMPORTANTE:
+   Este archivo NO modifica la estructura,
+   posición, ancho ni layout general del CMS.
+   ========================================================= */
+
+
+/* =========================================================
+   SIDEBAR — SOLO APARIENCIA
+   ========================================================= */
+
+.admin-sidebar {
+  color: white;
+
+  background:
+    var(--brand-navy);
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.admin-sidebar-brand {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.admin-sidebar-brand img {
+  width: 145px;
+  height: auto;
+
+  display: block;
+
+  /*
+   * Sobre el fondo azul oscuro usamos
+   * el logo en blanco.
+   */
+  filter:
+    brightness(0)
+    invert(1);
+}
+
+
+.admin-sidebar-brand > span {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 21px;
+
+  padding:
+    0 7px;
+
+  border-radius:
+    999px;
+
+  color:
+    var(--brand-navy);
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  background:
+    var(--brand-aqua);
+}
+
+
+/* =========================================================
+   LABEL CONTENIDO
+   ========================================================= */
+
+.admin-sidebar-label {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.38
+    );
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+   ========================================================= */
+
+.admin-nav-item {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+  font-family:
+    var(--font-brand);
+
+  font-weight: 650;
+
+  text-decoration: none;
+
+  transition:
+    color
+      var(--transition-fast),
+    background
+      var(--transition-fast),
+    transform
+      var(--transition-fast);
+}
+
+
+.admin-nav-item:hover {
+  color: white;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+
+  transform:
+    translateX(2px);
+}
+
+
+.admin-nav-item-active {
+  color:
+    var(--brand-navy) !important;
+
+  background:
+    var(--brand-aqua) !important;
+}
+
+
+.admin-nav-item-active:hover {
+  color:
+    var(--brand-navy) !important;
+
+  background:
+    var(--brand-aqua) !important;
+}
+
+
+.admin-nav-index {
+  color: inherit;
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  opacity: 0.62;
+}
+
+
+/* =========================================================
+   ACCIONES INFERIORES
+   ========================================================= */
+
+.admin-sidebar-public {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.14
+    ) !important;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.8
+    ) !important;
+
+  font-family:
+    var(--font-brand);
+
+  background:
+    transparent !important;
+}
+
+
+.admin-sidebar-public:hover {
+  color:
+    white !important;
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.34
+    ) !important;
+}
+
+
+.admin-logout-button {
+  border-color:
+    var(--brand-aqua) !important;
+
+  color:
+    var(--brand-navy) !important;
+
+  font-family:
+    var(--font-brand);
+
+  font-weight: 800;
+
+  background:
+    var(--brand-aqua) !important;
+}
+
+
+.admin-sidebar-public b,
+.admin-logout-button b {
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   SCROLLBAR DEL SIDEBAR
+   ========================================================= */
+
+.admin-sidebar {
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(
+      8,
+      195,
+      216,
+      0.35
+    )
+    transparent;
+}
+
+
+.admin-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+
+.admin-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.admin-sidebar::-webkit-scrollbar-thumb {
+  border-radius:
+    999px;
+
+  background:
+    rgba(
+      8,
+      195,
+      216,
+      0.3
+    );
+}

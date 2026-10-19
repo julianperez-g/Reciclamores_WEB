@@ -1,25 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
 
-type ResiduoCatalogo = {
+import {
+  useMemo,
+  useState,
+} from "react";
+
+import {
+  getResiduoImageUrl,
+} from "@/lib/supabase/storage";
+
+
+type Residuo = {
   id: string;
   nombre: string;
   slug: string;
 
-  imagenUrl:
-    | string
-    | null;
+  duda_real:
+    string | null;
 
-  imagenAlt: string;
+  respuesta_corta:
+    string | null;
 
-  aliases: string[];
+  imagen_path:
+    string | null;
+
+  imagen_alt:
+    string | null;
 };
 
-type ResidueCatalogProps = {
-  residuos: ResiduoCatalogo[];
+
+type Props = {
+  residuos:
+    Residuo[];
 };
+
 
 function normalizar(
   texto: string
@@ -34,185 +50,284 @@ function normalizar(
     .trim();
 }
 
+
 export default function ResidueCatalog({
   residuos,
-}: ResidueCatalogProps) {
-  const [query, setQuery] =
+}: Props) {
+  const [
+    query,
+    setQuery,
+  ] =
     useState("");
+
 
   const resultados =
     useMemo(() => {
-      const texto =
-        normalizar(query);
+      const busqueda =
+        normalizar(
+          query
+        );
 
-      if (!texto) {
+
+      if (!busqueda) {
         return residuos;
       }
 
+
       return residuos.filter(
-        (residuo) => {
-          const nombre =
+        (
+          residuo
+        ) => {
+          const contenido =
             normalizar(
-              residuo.nombre
+              [
+                residuo.nombre,
+                residuo.duda_real ??
+                  "",
+                residuo.respuesta_corta ??
+                  "",
+              ].join(
+                " "
+              )
             );
 
-          const coincideNombre =
-            nombre.includes(
-              texto
-            );
 
-          const coincideAlias =
-            residuo.aliases.some(
-              (alias) =>
-                normalizar(
-                  alias
-                ).includes(
-                  texto
-                )
-            );
-
-          return (
-            coincideNombre ||
-            coincideAlias
+          return contenido.includes(
+            busqueda
           );
         }
       );
+
     }, [
       query,
       residuos,
     ]);
 
+
   return (
-    <>
-      <div className="catalog-search">
-        <span className="catalog-search-icon">
-          ⌕
-        </span>
+    <section className="catalog-content">
 
-        <input
-          type="text"
-          value={query}
-          onChange={(event) =>
-            setQuery(
-              event.target.value
-            )
-          }
-          placeholder="Buscar en todos los residuos..."
-          autoComplete="off"
-        />
+      <div className="catalog-content-heading">
 
-        {query && (
-          <button
-            type="button"
-            className="catalog-clear"
-            onClick={() =>
-              setQuery("")
-            }
-            aria-label="Limpiar búsqueda"
-          >
-            ×
-          </button>
-        )}
-      </div>
-
-      <div className="catalog-meta">
-        {query ? (
-          <span>
-            {
-              resultados.length
-            }{" "}
-            resultado
-            {
-              resultados.length !==
-              1
-                ? "s"
-                : ""
-            }
-          </span>
-        ) : (
-          <span>
-            {
-              residuos.length
-            }{" "}
-            fichas disponibles
-          </span>
-        )}
-      </div>
-
-      {resultados.length > 0 ? (
-        <div className="catalog-grid">
-          {resultados.map(
-            (residuo) => (
-              <Link
-                key={
-                  residuo.id
-                }
-                href={`/residuos/${residuo.slug}`}
-                className="catalog-card"
-              >
-                {residuo.imagenUrl ? (
-                  <img
-                    src={
-                      residuo.imagenUrl
-                    }
-                    alt={
-                      residuo.imagenAlt
-                    }
-                    className="catalog-card-image"
-                  />
-                ) : (
-                  <div className="catalog-card-placeholder">
-                    <span>
-                      Imagen
-                      próximamente
-                    </span>
-                  </div>
-                )}
-
-                <div className="catalog-card-content">
-                  <h2>
-                    {
-                      residuo.nombre
-                    }
-                  </h2>
-
-                  <span>
-                    Ver ficha →
-                  </span>
-                </div>
-              </Link>
-            )
-          )}
+        <div className="catalog-content-number">
+          02
         </div>
-      ) : (
-        <section className="catalog-empty">
-          <p className="eyebrow">
-            SIN RESULTADOS
+
+
+        <div>
+
+          <p className="catalog-eyebrow">
+            EXPLORA
           </p>
 
           <h2>
-            No encontramos “
-            {query}”
+            Todos los
+            <br />
+            residuos
           </h2>
 
-          <p>
-            Si no encuentras el
-            residuo que necesitas,
-            puedes contárselo a
-            Reciclamores.
-          </p>
+        </div>
 
-          <Link
-            href={`/no-encontre?residuo=${encodeURIComponent(
+
+        <p>
+          Escribe el nombre de un objeto o
+          recorre todas las fichas disponibles.
+        </p>
+
+      </div>
+
+
+      <div className="catalog-search-area">
+
+        <div className="catalog-search-box">
+
+          <span>
+            ⌕
+          </span>
+
+
+          <input
+            type="text"
+            value={
               query
-            )}`}
-            className="catalog-empty-button"
-          >
-            No encontré mi
-            residuo →
-          </Link>
-        </section>
+            }
+            onChange={(
+              event
+            ) =>
+              setQuery(
+                event.target.value
+              )
+            }
+            placeholder="Buscar: aceite, pilas, ropa, bombillos..."
+          />
+
+
+          {query && (
+            <button
+              type="button"
+              onClick={() =>
+                setQuery("")
+              }
+              aria-label="Limpiar búsqueda"
+            >
+              ×
+            </button>
+          )}
+
+        </div>
+
+
+        <div className="catalog-result-summary">
+
+          <strong>
+            {
+              resultados.length
+            }
+          </strong>
+
+          <span>
+            {resultados.length === 1
+              ? "ficha encontrada"
+              : "fichas encontradas"}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      {resultados.length > 0 ? (
+        <div className="catalog-grid">
+
+          {resultados.map(
+            (
+              residuo,
+              index
+            ) => {
+              const imagenUrl =
+                getResiduoImageUrl(
+                  residuo.imagen_path
+                );
+
+
+              return (
+                <Link
+                  key={
+                    residuo.id
+                  }
+                  href={
+                    `/residuos/${residuo.slug}`
+                  }
+                  className="catalog-card"
+                >
+
+                  <div className="catalog-card-number">
+                    {String(
+                      index + 1
+                    ).padStart(
+                      2,
+                      "0"
+                    )}
+                  </div>
+
+
+                  <div className="catalog-card-image">
+
+                    {imagenUrl ? (
+                      <img
+                        src={
+                          imagenUrl
+                        }
+                        alt={
+                          residuo.imagen_alt ??
+                          residuo.nombre
+                        }
+                      />
+                    ) : (
+                      <div className="catalog-card-no-image">
+                        ?
+                      </div>
+                    )}
+
+                  </div>
+
+
+                  <div className="catalog-card-content">
+
+                    <strong>
+                      {
+                        residuo.nombre
+                      }
+                    </strong>
+
+
+                    {residuo.duda_real && (
+                      <p>
+                        {
+                          residuo.duda_real
+                        }
+                      </p>
+                    )}
+
+
+                    <span>
+                      Ver ficha
+                      <b>
+                        →
+                      </b>
+                    </span>
+
+                  </div>
+
+                </Link>
+              );
+            }
+          )}
+
+        </div>
+      ) : (
+        <div className="catalog-empty">
+
+          <div className="catalog-empty-mark">
+            ?
+          </div>
+
+
+          <div>
+
+            <p className="catalog-eyebrow">
+              SIN RESULTADOS
+            </p>
+
+            <h3>
+              Todavía no tenemos
+              esa ficha
+            </h3>
+
+            <p>
+              Prueba otro término o cuéntanos
+              qué residuo estabas buscando.
+            </p>
+
+
+            <Link
+              href={
+                `/no-encontre?residuo=${encodeURIComponent(
+                  query
+                )}`
+              }
+            >
+              Registrar mi búsqueda
+              <span>
+                →
+              </span>
+            </Link>
+
+          </div>
+
+        </div>
       )}
-    </>
+
+    </section>
   );
 }

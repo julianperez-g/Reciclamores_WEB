@@ -1,0 +1,824 @@
+/* =========================================================
+   RECICLAMORES CMS
+   CAPA VISUAL SEGURA
+
+   IMPORTANTE:
+   Este archivo NO modifica grids, anchos ni estructuras
+   internas de las pantallas del CMS.
+   ========================================================= */
+
+
+/* =========================================================
+   FONDO GENERAL
+   ========================================================= */
+
+.admin-page {
+  min-height: 100vh;
+
+  color:
+    var(--text);
+
+  background:
+    #f5f8fa;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.admin-sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  z-index: 100;
+
+  width: 250px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content:
+    space-between;
+
+  padding:
+    28px 20px 22px;
+
+  overflow-y: auto;
+
+  color: white;
+
+  background:
+    var(--brand-navy);
+
+  box-shadow: none;
+}
+
+
+.admin-sidebar::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  right: -145px;
+  top: 48%;
+
+  border:
+    30px solid
+    var(--brand-aqua);
+
+  border-radius: 50%;
+
+  opacity: 0.045;
+
+  pointer-events: none;
+}
+
+
+.admin-sidebar-top,
+.admin-sidebar-bottom {
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   LOGO CMS
+   ========================================================= */
+
+.admin-sidebar-brand {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  margin-bottom: 48px;
+}
+
+
+.admin-sidebar-brand img {
+  width: 145px;
+  height: auto;
+
+  display: block;
+
+  filter:
+    brightness(0)
+    invert(1);
+}
+
+
+.admin-sidebar-brand > span {
+  position: absolute;
+
+  right: 0;
+  top: 3px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 21px;
+
+  padding:
+    0 7px;
+
+  border-radius:
+    999px;
+
+  color:
+    var(--brand-navy);
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  background:
+    var(--brand-aqua);
+}
+
+
+/* =========================================================
+   SIDEBAR LABEL
+   ========================================================= */
+
+.admin-sidebar-label {
+  margin:
+    0 0 11px 12px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.38
+    );
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.admin-nav {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+
+.admin-nav-item {
+  min-height: 52px;
+
+  display: grid;
+
+  grid-template-columns:
+    28px
+    minmax(
+      0,
+      1fr
+    );
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding:
+    0 13px;
+
+  border-radius: 11px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+  font-size: 11px;
+
+  font-weight: 650;
+
+  text-decoration: none;
+
+  transition:
+    color
+      var(--transition-fast),
+    background
+      var(--transition-fast),
+    transform
+      var(--transition-fast);
+}
+
+
+.admin-nav-item:hover {
+  color: white;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+
+  transform:
+    translateX(2px);
+}
+
+
+.admin-nav-item-active {
+  color:
+    var(--brand-navy);
+
+  background:
+    var(--brand-aqua);
+}
+
+
+.admin-nav-item-active:hover {
+  color:
+    var(--brand-navy);
+
+  background:
+    var(--brand-aqua);
+}
+
+
+.admin-nav-index {
+  font-size: 7px;
+
+  font-weight: 900;
+
+  opacity: 0.6;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+   ========================================================= */
+
+.admin-sidebar-bottom {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.admin-sidebar-public,
+.admin-logout-button {
+  width: 100%;
+
+  min-height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 12px;
+
+  padding:
+    0 14px;
+
+  border-radius: 11px;
+
+  font-family:
+    var(--font-brand);
+
+  font-size: 9px;
+
+  font-weight: 750;
+}
+
+
+.admin-sidebar-public {
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.13
+    );
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.78
+    );
+
+  background:
+    transparent;
+}
+
+
+.admin-sidebar-public:hover {
+  color: white;
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.32
+    );
+}
+
+
+.admin-logout-button {
+  border: 0;
+
+  color:
+    var(--brand-navy);
+
+  background:
+    var(--brand-aqua);
+
+  cursor: pointer;
+}
+
+
+.admin-sidebar-public b,
+.admin-logout-button b {
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   CONTENIDO PRINCIPAL
+
+   Solo dejamos espacio para el sidebar.
+   NO alteramos grids internos.
+   ========================================================= */
+
+.admin-main {
+  margin-left: 250px;
+
+  min-height: 100vh;
+
+  padding:
+    42px 42px 80px;
+
+  background:
+    #f5f8fa;
+}
+
+
+/* =========================================================
+   CABECERAS
+   ========================================================= */
+
+.admin-kicker {
+  color:
+    var(--brand-aqua-dark) !important;
+
+  font-size: 8px !important;
+
+  font-weight: 900 !important;
+
+  letter-spacing:
+    0.18em !important;
+}
+
+
+.admin-topbar h1,
+.admin-main h1 {
+  color:
+    var(--brand-navy);
+}
+
+
+/* =========================================================
+   TIPOGRAFÍA GENERAL
+   ========================================================= */
+
+.admin-main,
+.admin-main button,
+.admin-main input,
+.admin-main textarea,
+.admin-main select {
+  font-family:
+    var(--font-brand);
+}
+
+
+/* =========================================================
+   BOTONES PRINCIPALES
+
+   No modificamos width/display de sus contenedores.
+   ========================================================= */
+
+.admin-primary-button {
+  border-radius:
+    999px !important;
+
+  color: white !important;
+
+  background:
+    var(--brand-navy) !important;
+
+  border-color:
+    var(--brand-navy) !important;
+
+  box-shadow: none !important;
+
+  font-family:
+    var(--font-brand);
+
+  font-weight: 850;
+
+  transition:
+    transform
+      var(--transition-fast),
+    background
+      var(--transition-fast);
+}
+
+
+.admin-primary-button:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    var(--brand-cobalt) !important;
+}
+
+
+.admin-secondary-button,
+.admin-edit-button {
+  border-radius:
+    999px !important;
+
+  color:
+    var(--brand-navy) !important;
+
+  border-color:
+    var(--border-medium) !important;
+
+  background:
+    white !important;
+
+  font-family:
+    var(--font-brand);
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   INPUTS
+
+   Solo apariencia.
+   NO ancho / alto / display.
+   ========================================================= */
+
+.admin-main input:not([type="checkbox"]),
+.admin-main textarea,
+.admin-main select {
+  border-color:
+    var(--border-medium);
+
+  background:
+    #fbfcfd;
+
+  font-family:
+    var(--font-brand);
+}
+
+
+.admin-main input:not([type="checkbox"]):focus,
+.admin-main textarea:focus,
+.admin-main select:focus {
+  border-color:
+    var(--brand-aqua) !important;
+
+  outline: none;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(
+      8,
+      195,
+      216,
+      0.07
+    ) !important;
+
+  background:
+    white;
+}
+
+
+/* =========================================================
+   NUMERACIÓN DE FORMULARIOS
+   ========================================================= */
+
+.admin-form-number {
+  color:
+    var(--brand-navy) !important;
+
+  background:
+    var(--brand-aqua) !important;
+}
+
+
+/* =========================================================
+   CARDS
+   Solo estética, no layout.
+   ========================================================= */
+
+.admin-stat-card,
+.admin-dashboard-card,
+.admin-form-section {
+  border-color:
+    var(--border) !important;
+
+  box-shadow:
+    none !important;
+}
+
+
+.admin-form-section {
+  background:
+    white;
+}
+
+
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.admin-filter-tab {
+  border-radius:
+    999px !important;
+
+  font-family:
+    var(--font-brand);
+}
+
+
+.admin-filter-tab-active {
+  color:
+    white !important;
+
+  background:
+    var(--brand-navy) !important;
+
+  border-color:
+    var(--brand-navy) !important;
+}
+
+
+/* =========================================================
+   ESTADOS
+   ========================================================= */
+
+.admin-status-published {
+  color:
+    #176b4c !important;
+
+  background:
+    #e8f7f0 !important;
+}
+
+
+.admin-status-draft {
+  color:
+    #94620b !important;
+
+  background:
+    #fff4d6 !important;
+}
+
+
+/* =========================================================
+   IMÁGENES
+   ========================================================= */
+
+.admin-image-dropzone {
+  border-color:
+    var(--brand-aqua) !important;
+
+  background:
+    rgba(
+      8,
+      195,
+      216,
+      0.035
+    ) !important;
+}
+
+
+.admin-image-dropzone:hover {
+  background:
+    rgba(
+      8,
+      195,
+      216,
+      0.07
+    ) !important;
+}
+
+
+/* =========================================================
+   BARRA GUARDAR
+   ========================================================= */
+
+.admin-form-savebar {
+  border-color:
+    var(--border) !important;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.96
+    ) !important;
+
+  box-shadow:
+    0 12px 35px
+    rgba(
+      0,
+      36,
+      83,
+      0.08
+    ) !important;
+
+  backdrop-filter:
+    blur(14px);
+}
+
+
+/* =========================================================
+   LISTAS / TABLAS
+
+   IMPORTANTE:
+   NO ponemos overflow:hidden,
+   width, height, display ni grid.
+   ========================================================= */
+
+.admin-residue-list,
+.admin-needs-table,
+.admin-faq-list {
+  border-color:
+    var(--border) !important;
+
+  background:
+    white;
+
+  box-shadow:
+    none !important;
+}
+
+
+/* =========================================================
+   DELETE
+   ========================================================= */
+
+.admin-delete-button {
+  border-radius:
+    999px !important;
+
+  font-family:
+    var(--font-brand);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .admin-sidebar {
+    width: 210px;
+
+    padding:
+      24px 14px;
+  }
+
+
+  .admin-main {
+    margin-left: 210px;
+
+    padding:
+      32px 24px 70px;
+  }
+
+
+  .admin-sidebar-brand img {
+    width: 125px;
+  }
+
+}
+
+
+@media (max-width: 720px) {
+
+  .admin-sidebar {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+
+    padding:
+      18px;
+  }
+
+
+  .admin-sidebar::after {
+    display: none;
+  }
+
+
+  .admin-sidebar-brand {
+    margin-bottom: 18px;
+  }
+
+
+  .admin-sidebar-label {
+    display: none;
+  }
+
+
+  .admin-nav {
+    display: grid;
+
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+    gap: 5px;
+  }
+
+
+  .admin-nav-item {
+    min-height: 46px;
+
+    grid-template-columns:
+      1fr;
+
+    justify-items: center;
+
+    gap: 2px;
+
+    padding:
+      5px;
+
+    text-align: center;
+
+    font-size: 8px;
+  }
+
+
+  .admin-nav-index {
+    font-size: 6px;
+  }
+
+
+  .admin-sidebar-bottom {
+    display: none;
+  }
+
+
+  .admin-main {
+    margin-left: 0;
+
+    padding:
+      28px 16px 60px;
+  }
+
+}

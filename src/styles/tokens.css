@@ -1,64 +1,147 @@
 :root {
-  /* Marca */
-  --brand-navy: #10365d;
-  --brand-navy-dark: #092b4d;
-  --brand-navy-soft: #174b7a;
+  /* ======================================================
+     RECICLAMORES — PALETA OFICIAL
+     ====================================================== */
 
-  --brand-cyan: #12bfd0;
-  --brand-cyan-dark: #0aa6b6;
-  --brand-cyan-soft: #79dde6;
+  --brand-navy: #002453;
+  --brand-navy-deep: #001b3f;
+  --brand-navy-soft: #073967;
 
-  --brand-sky: #dff5fa;
-  --brand-sky-soft: #f1fbfd;
+  --brand-aqua: #08c3d8;
+  --brand-aqua-dark: #00a9c0;
+  --brand-aqua-soft: #dff8fb;
 
-  /* Superficies */
-  --background: #ffffff;
-  --surface: #f7fbfc;
-  --surface-soft: #fbfdfe;
-  --surface-dark: #0d355c;
+  --brand-cobalt: #0059a5;
+  --brand-cobalt-dark: #00477f;
 
-  /* Texto */
-  --text: #17324d;
-  --text-strong: #0e2f50;
-  --text-muted: #647786;
-  --text-soft: #8a9aa6;
+  --brand-pastel: #aac8e8;
+  --brand-pastel-soft: #eaf2fa;
 
-  /* Bordes */
-  --border: #dcebef;
-  --border-strong: #c7e1e6;
 
-  /* Estados */
-  --danger-bg: #fff1f1;
-  --danger-text: #a33838;
+  /* ======================================================
+     SUPERFICIES
+     ====================================================== */
 
-  /* Radios */
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 26px;
-  --radius-xl: 34px;
-  --radius-pill: 999px;
+  --background: #f9faf9;
+  --surface: #ffffff;
+  --surface-soft: #f4f7f8;
 
-  /* Sombras */
+  --paper: #f8f7f3;
+  --paper-blue: #eef5fa;
+
+  --surface-navy: #002453;
+  --surface-aqua: #08c3d8;
+
+
+  /* ======================================================
+     TEXTO
+     ====================================================== */
+
+  --text-strong: #002453;
+  --text: #173550;
+  --text-muted: #577084;
+  --text-soft: #8799a8;
+
+  --text-on-dark: #ffffff;
+  --text-on-aqua: #002453;
+
+
+  /* ======================================================
+     BORDES
+     ====================================================== */
+
+  --border: rgba(0, 36, 83, 0.12);
+  --border-medium: rgba(0, 36, 83, 0.2);
+  --border-strong: rgba(0, 36, 83, 0.32);
+
+  --border-aqua: rgba(8, 195, 216, 0.5);
+
+
+  /* ======================================================
+     ESTADOS
+     ====================================================== */
+
+  --success: #18794e;
+  --success-bg: #e9f8f1;
+
+  --warning: #9b6a10;
+  --warning-bg: #fff6da;
+
+  --danger: #a53d3d;
+  --danger-bg: #fff0f0;
+
+
+  /* ======================================================
+     SOMBRAS
+     
+     Muchísimo más discretas.
+     Queremos evitar estética SaaS / IA.
+     ====================================================== */
+
   --shadow-xs:
-    0 4px 14px
-    rgba(16, 54, 93, 0.04);
+    0 1px 2px rgba(0, 36, 83, 0.03);
 
   --shadow-sm:
-    0 10px 28px
-    rgba(16, 54, 93, 0.07);
+    0 5px 16px rgba(0, 36, 83, 0.06);
 
   --shadow-md:
-    0 20px 50px
-    rgba(16, 54, 93, 0.11);
+    0 14px 34px rgba(0, 36, 83, 0.08);
 
-  --shadow-lg:
-    0 30px 80px
-    rgba(16, 54, 93, 0.14);
 
-  /* Layout */
-  --container-width: 1180px;
+  /* ======================================================
+     RADIOS
 
-  /* Animación */
+     Menos "todo redondito".
+     ====================================================== */
+
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --radius-pill: 999px;
+
+
+  /* ======================================================
+     ESPACIADO
+     ====================================================== */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 56px;
+  --space-10: 72px;
+  --space-11: 96px;
+
+
+  /* ======================================================
+     CONTENEDORES
+     ====================================================== */
+
+  --container: 1180px;
+  --content: 820px;
+
+
+  /* ======================================================
+     TRANSICIONES
+     ====================================================== */
+
   --transition-fast: 160ms ease;
-  --transition: 240ms ease;
+  --transition-normal: 240ms ease;
+
+
+  /* ======================================================
+     COMPATIBILIDAD CON CSS EXISTENTE
+     ====================================================== */
+
+  --brand-cyan: var(--brand-aqua);
+  --brand-cyan-dark: var(--brand-aqua-dark);
+
+  --brand-sky: var(--brand-aqua-soft);
+  --brand-sky-soft: #effbfc;
 }

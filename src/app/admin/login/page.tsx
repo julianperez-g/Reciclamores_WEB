@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -28,26 +29,13 @@ function getSafeNext(
     return "/admin";
   }
 
-
-  /*
-   * Solo permitimos redirecciones
-   * internas hacia el CMS.
-   *
-   * Evita open redirects.
-   */
   if (
-    !value.startsWith(
-      "/admin"
-    ) ||
-    value.startsWith(
-      "//"
-    ) ||
-    value ===
-      "/admin/login"
+    !value.startsWith("/admin") ||
+    value.startsWith("//") ||
+    value === "/admin/login"
   ) {
     return "/admin";
   }
-
 
   return value;
 }
@@ -122,28 +110,19 @@ export default function AdminLoginPage() {
           });
 
 
-      if (
-        signInError
-      ) {
+      if (signInError) {
         throw new Error(
           "Correo o contraseña incorrectos."
         );
       }
 
 
-      /*
-       * Iniciar sesión en Supabase no basta.
-       *
-       * También comprobamos que ese usuario
-       * sea administrador del CMS.
-       */
       const admin =
         await getCurrentAdmin();
 
 
       if (!admin) {
         await supabase.auth.signOut();
-
 
         throw new Error(
           "Este usuario no tiene permisos para acceder al panel administrativo."
@@ -165,10 +144,10 @@ export default function AdminLoginPage() {
 
       router.refresh();
 
-    } catch (error) {
+    } catch (caughtError) {
       setError(
-        error instanceof Error
-          ? error.message
+        caughtError instanceof Error
+          ? caughtError.message
           : "No fue posible iniciar sesión."
       );
 
@@ -180,171 +159,179 @@ export default function AdminLoginPage() {
   return (
     <main className="admin-login-page">
 
-      <section className="admin-login-card">
+      <section className="admin-login-panel">
 
-        <div className="admin-login-brand">
+        <div className="admin-login-panel-inner">
 
-          <div className="admin-login-logo">
-
-            <strong>
-              Reciclamores
-            </strong>
-
-            <span>
-              CMS
-            </span>
-
-          </div>
-
-
-          <p>
-            PANEL ADMINISTRATIVO
-          </p>
-
-        </div>
-
-
-        <div className="admin-login-heading">
-
-          <h1>
-            Iniciar sesión
-          </h1>
-
-          <p>
-            Accede al panel para administrar
-            residuos, necesidades y preguntas
-            frecuentes.
-          </p>
-
-        </div>
-
-
-        <form
-          className="admin-login-form"
-          onSubmit={
-            handleSubmit
-          }
-        >
-
-          <div className="admin-login-field">
-
-            <label
-              htmlFor="admin-email"
-            >
-              Correo electrónico
-            </label>
-
-            <input
-              id="admin-email"
-              type="email"
-              autoComplete="email"
-              value={
-                email
-              }
-              onChange={(
-                event
-              ) =>
-                setEmail(
-                  event.target.value
-                )
-              }
-              placeholder="nombre@reciclamores.org"
-              required
+          <Link
+            href="/"
+            className="admin-login-logo"
+          >
+            <Image
+              src="/brand/reciclamores-logo.png"
+              alt="Reciclamores ONG"
+              width={250}
+              height={90}
+              priority
             />
+          </Link>
+
+
+          <div className="admin-login-heading">
+
+            <p className="admin-login-kicker">
+              PANEL ADMINISTRATIVO
+            </p>
+
+
+            <h1>
+              Bienvenido
+              <span>
+                de nuevo.
+              </span>
+            </h1>
+
+
+            <p>
+              Ingresa con tu cuenta autorizada
+              para administrar la guía digital
+              de residuos.
+            </p>
 
           </div>
 
 
-          <div className="admin-login-field">
+          <form
+            className="admin-login-form"
+            onSubmit={
+              handleSubmit
+            }
+          >
 
-            <label
-              htmlFor="admin-password"
-            >
-              Contraseña
-            </label>
+            <div className="admin-login-field">
 
+              <label htmlFor="admin-email">
+                Correo electrónico
+              </label>
 
-            <div className="admin-password-field">
 
               <input
-                id="admin-password"
-                type={
-                  showPassword
-                    ? "text"
-                    : "password"
-                }
-                autoComplete="current-password"
+                id="admin-email"
+                type="email"
+                autoComplete="email"
                 value={
-                  password
+                  email
                 }
                 onChange={(
                   event
                 ) =>
-                  setPassword(
+                  setEmail(
                     event.target.value
                   )
                 }
-                placeholder="Tu contraseña"
+                placeholder="correo@reciclamores.org"
                 required
               />
 
+            </div>
 
-              <button
-                type="button"
-                onClick={() =>
-                  setShowPassword(
-                    (
-                      current
-                    ) =>
-                      !current
-                  )
-                }
-              >
-                {showPassword
-                  ? "Ocultar"
-                  : "Ver"}
-              </button>
+
+            <div className="admin-login-field">
+
+              <label htmlFor="admin-password">
+                Contraseña
+              </label>
+
+
+              <div className="admin-password-field">
+
+                <input
+                  id="admin-password"
+                  type={
+                    showPassword
+                      ? "text"
+                      : "password"
+                  }
+                  autoComplete="current-password"
+                  value={
+                    password
+                  }
+                  onChange={(
+                    event
+                  ) =>
+                    setPassword(
+                      event.target.value
+                    )
+                  }
+                  placeholder="Tu contraseña"
+                  required
+                />
+
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setShowPassword(
+                      (
+                        current
+                      ) =>
+                        !current
+                    )
+                  }
+                >
+                  {showPassword
+                    ? "Ocultar"
+                    : "Ver"}
+                </button>
+
+              </div>
 
             </div>
+
+
+            {error && (
+              <div className="admin-login-error">
+                {error}
+              </div>
+            )}
+
+
+            <button
+              type="submit"
+              className="admin-login-submit"
+              disabled={
+                loading
+              }
+            >
+              <span>
+                {loading
+                  ? "Verificando..."
+                  : "Ingresar al CMS"}
+              </span>
+
+              {!loading && (
+                <b>
+                  →
+                </b>
+              )}
+            </button>
+
+          </form>
+
+
+          <div className="admin-login-footer">
+
+            <span>
+              Acceso exclusivo para
+              administradores autorizados.
+            </span>
+
+
+            <Link href="/">
+              ← Volver a la guía
+            </Link>
 
           </div>
-
-
-          {error && (
-            <div className="admin-login-error">
-              {error}
-            </div>
-          )}
-
-
-          <button
-            type="submit"
-            className="admin-login-submit"
-            disabled={
-              loading
-            }
-          >
-            {loading
-              ? "Verificando..."
-              : "Ingresar al CMS"}
-          </button>
-
-        </form>
-
-
-        <div className="admin-login-footer">
-
-          <span>
-            Acceso exclusivo para
-            administradores autorizados.
-          </span>
-
-
-          <Link
-            href="/"
-          >
-            ← Volver a la guía
-          </Link>
 
         </div>
 
@@ -353,59 +340,80 @@ export default function AdminLoginPage() {
 
       <aside className="admin-login-visual">
 
+        <div className="admin-login-number">
+          01
+        </div>
+
+
+        <div className="admin-login-star">
+          ✦
+        </div>
+
+
+        <div className="admin-login-scribble">
+          ∿
+        </div>
+
+
         <div className="admin-login-visual-content">
 
-          <span className="admin-login-visual-kicker">
-            ¿Y ESTO DÓNDE VA?
-          </span>
-
-
-          <h2>
-            La guía cambia.
-            <br />
-            El contenido también.
-          </h2>
-
-
           <p>
-            Desde este panel Reciclamores
-            puede mantener la información
-            actualizada sin tocar código.
+            ¿Y ESTO DÓNDE VA?
           </p>
 
 
-          <div className="admin-login-feature-grid">
+          <h2>
+            La guía cambia
+            <span>
+              con las dudas reales.
+            </span>
+          </h2>
+
+
+          <div className="admin-login-features">
 
             <div>
+              <span>
+                01
+              </span>
+
               <strong>
                 Residuos
               </strong>
 
-              <span>
-                Crear y actualizar fichas
-              </span>
+              <p>
+                Crear, editar y publicar fichas.
+              </p>
             </div>
 
 
             <div>
+              <span>
+                02
+              </span>
+
               <strong>
                 Necesidades
               </strong>
 
-              <span>
-                Detectar nuevas dudas
-              </span>
+              <p>
+                Entender qué busca la comunidad.
+              </p>
             </div>
 
 
             <div>
+              <span>
+                03
+              </span>
+
               <strong>
-                FAQs
+                Preguntas
               </strong>
 
-              <span>
-                Administrar respuestas
-              </span>
+              <p>
+                Mantener las respuestas al día.
+              </p>
             </div>
 
           </div>

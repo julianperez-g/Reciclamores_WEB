@@ -1,168 +1,351 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import Link from "next/link";
-import { supabase } from "@/lib/supabase/client";
+import {
+  FormEvent,
+  useState,
+} from "react";
 
-type NoEncontreFormProps = {
-  residuoInicial: string;
+import Link from "next/link";
+
+import {
+  supabase,
+} from "@/lib/supabase/client";
+
+
+type Props = {
+  initialResiduo?: string | null;
 };
 
-function normalizarTexto(texto: string) {
-  return texto
+
+function normalizarTexto(
+  texto:
+    string |
+    null |
+    undefined
+) {
+  return (
+    texto ?? ""
+  )
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
     .toLowerCase()
     .trim();
 }
 
+
 export default function NoEncontreForm({
-  residuoInicial,
-}: NoEncontreFormProps) {
-  const [residuo, setResiduo] =
-    useState(residuoInicial);
+  initialResiduo,
+}: Props) {
+  const valorInicial =
+    typeof initialResiduo === "string"
+      ? initialResiduo
+      : "";
 
-  const [enviando, setEnviando] =
+
+  const [
+    residuo,
+    setResiduo,
+  ] =
+    useState<string>(
+      valorInicial
+    );
+
+
+  const [
+    loading,
+    setLoading,
+  ] =
     useState(false);
 
-  const [enviado, setEnviado] =
+
+  const [
+    success,
+    setSuccess,
+  ] =
     useState(false);
 
-  const [error, setError] =
-    useState<string | null>(null);
 
-  async function manejarEnvio(
-    event: FormEvent<HTMLFormElement>
+  const [
+    error,
+    setError,
+  ] =
+    useState<string | null>(
+      null
+    );
+
+
+  async function handleSubmit(
+    event:
+      FormEvent<HTMLFormElement>
   ) {
     event.preventDefault();
 
-    const texto = residuo.trim();
 
-    if (texto.length < 2) {
+    const texto =
+      (
+        residuo ??
+        ""
+      ).trim();
+
+
+    if (!texto) {
       setError(
-        "Escribe el nombre del residuo que estabas buscando."
+        "Escribe el residuo que estabas buscando."
       );
 
       return;
     }
 
-    setEnviando(true);
+
+    setLoading(true);
     setError(null);
 
-    const { error: insertError } =
-      await supabase
-        .from("busquedas")
-        .insert({
-          texto_original: texto,
-          texto_normalizado:
-            normalizarTexto(texto),
-          encontro_resultado: false,
-          residuo_id: null,
-          origen:
-            "formulario_no_encontre",
-        });
 
-    if (insertError) {
-      console.error(
-        "Error registrando búsqueda:",
+    try {
+      const {
+        error:
+          insertError,
+      } =
+        await supabase
+          .from(
+            "busquedas"
+          )
+          .insert({
+            texto_original:
+              texto,
+
+            texto_normalizado:
+              normalizarTexto(
+                texto
+              ),
+
+            encontro_resultado:
+              false,
+
+            residuo_id:
+              null,
+
+            origen:
+              "formulario_no_encontre",
+          });
+
+
+      if (
         insertError
+      ) {
+        throw new Error(
+          insertError.message
+        );
+      }
+
+
+      setSuccess(
+        true
       );
+
+    } catch (
+      caughtError
+    ) {
+      console.error(
+        caughtError
+      );
+
 
       setError(
-        "No pudimos registrar tu búsqueda. Inténtalo nuevamente."
+        "No pudimos registrar la búsqueda. Intenta nuevamente."
       );
 
-      setEnviando(false);
-
-      return;
+    } finally {
+      setLoading(
+        false
+      );
     }
-
-    setEnviado(true);
-    setEnviando(false);
   }
 
-  if (enviado) {
+
+  const residuoMostrado =
+    (
+      residuo ??
+      ""
+    ).trim();
+
+
+  if (success) {
     return (
-      <section className="not-found-success">
+      <div className="not-found-success">
+
         <div className="not-found-success-icon">
           ✓
         </div>
 
-        <div>
-          <p className="not-found-success-label">
-            BÚSQUEDA REGISTRADA
-          </p>
 
-          <h2>
-            Gracias por ayudarnos.
-          </h2>
+        <p className="not-found-eyebrow">
+          BÚSQUEDA REGISTRADA
+        </p>
 
-          <p>
-            Registramos{" "}
-            <strong>
-              “{residuo.trim()}”
-            </strong>
-            . Esta información ayudará a Reciclamores
-            a decidir qué nuevas fichas crear.
-          </p>
+
+        <h3>
+          Gracias por ayudarnos
+          a mejorar la guía.
+        </h3>
+
+
+        <p>
+          Registramos{" "}
+
+          <strong>
+            “{residuoMostrado}”
+          </strong>.
+
+          {" "}
+
+          Si más personas buscan lo mismo,
+          Reciclamores podrá identificarlo
+          como una necesidad prioritaria.
+        </p>
+
+
+        <div className="not-found-success-actions">
+
+          <button
+            type="button"
+            onClick={() => {
+              setResiduo(
+                ""
+              );
+
+              setSuccess(
+                false
+              );
+
+              setError(
+                null
+              );
+            }}
+          >
+            Registrar otro
+          </button>
+
 
           <Link
-            href="/"
-            className="not-found-home-button"
+            href="/residuos"
           >
-            Volver a buscar →
+            Explorar la guía
+
+            <span>
+              →
+            </span>
           </Link>
+
         </div>
-      </section>
+
+      </div>
     );
   }
+
 
   return (
     <form
       className="not-found-form"
-      onSubmit={manejarEnvio}
+      onSubmit={
+        handleSubmit
+      }
     >
-      <label htmlFor="residuo">
-        ¿Qué residuo estabas buscando?
-      </label>
 
-      <div className="not-found-input-group">
+      <div className="not-found-form-label">
+
+        <span>
+          RESIDUO
+        </span>
+
+        <small>
+          Una palabra es suficiente.
+        </small>
+
+      </div>
+
+
+      <div className="not-found-input-wrap">
+
         <input
-          id="residuo"
-          name="residuo"
           type="text"
-          value={residuo}
-          onChange={(event) =>
-            setResiduo(event.target.value)
+          value={
+            residuo
           }
-          placeholder="Ej: aerosol, pañal, cuchilla..."
-          maxLength={250}
+          onChange={(
+            event
+          ) =>
+            setResiduo(
+              event.target.value
+            )
+          }
+          placeholder="Ej. colchón, pañal, maquillaje..."
           autoComplete="off"
-          disabled={enviando}
+          maxLength={120}
         />
 
-        <button
-          type="submit"
-          disabled={
-            enviando ||
-            residuo.trim().length < 2
-          }
-        >
-          {enviando
-            ? "Enviando..."
-            : "Enviar"}
-        </button>
+
+        <span className="not-found-input-mark">
+          ?
+        </span>
+
       </div>
 
-      <div className="not-found-counter">
-        {residuo.length}/250
-      </div>
+
+      <p className="not-found-form-help">
+        Escríbelo como normalmente lo llamarías.
+        No importa si no conoces su nombre técnico.
+      </p>
+
 
       {error && (
-        <p className="not-found-error">
+        <div className="not-found-form-error">
           {error}
-        </p>
+        </div>
       )}
+
+
+      <button
+        type="submit"
+        className="not-found-submit"
+        disabled={
+          loading
+        }
+      >
+
+        <span>
+          {loading
+            ? "Registrando..."
+            : "Registrar mi búsqueda"}
+        </span>
+
+
+        {!loading && (
+          <b>
+            →
+          </b>
+        )}
+
+      </button>
+
+
+      <div className="not-found-privacy">
+
+        <span>
+          ✦
+        </span>
+
+
+        <p>
+          No pedimos nombre, correo,
+          teléfono ni ubicación.
+        </p>
+
+      </div>
+
     </form>
   );
 }

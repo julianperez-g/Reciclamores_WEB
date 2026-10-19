@@ -1,14 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Nunito:wght@400;500;600;700;800;900&display=swap");
+
 @import "tailwindcss";
 
 @import "../styles/tokens.css";
 @import "../styles/base.css";
 @import "../styles/shared.css";
+
 @import "../styles/home.css";
 @import "../styles/search.css";
 @import "../styles/catalog.css";
 @import "../styles/residue.css";
 @import "../styles/faq.css";
 @import "../styles/forms.css";
+@import "../styles/no-encontre.css";
 
 @import "../styles/admin.css";
 @import "../styles/admin-residuos.css";
@@ -17,3 +21,7 @@
 @import "../styles/admin-images.css";
 @import "../styles/admin-faqs.css";
 @import "../styles/admin-login.css";
+
+@import "../styles/brand-refresh.css";
+
+@import "../styles/admin-sidebar-brand.css";
