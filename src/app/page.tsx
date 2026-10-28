@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import SiteHeader from "@/components/layout/SiteHeader";
-
 import WasteSearch from "@/components/search/WasteSearch";
 
 import {
@@ -42,6 +41,60 @@ type ResiduoBusqueda = {
       alias: string;
     }[] | null;
 };
+
+
+/* =========================================================
+   ICONOS
+   ========================================================= */
+
+function ArrowRightIcon({
+  size = 18,
+}: {
+  size?: number;
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M5 12H19M14 7L19 12L14 17"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+
+function ExternalLinkIcon({
+  size = 16,
+}: {
+  size?: number;
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M7 17L17 7M9 7H17V15"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 
 export default async function HomePage() {
@@ -146,6 +199,11 @@ export default async function HomePage() {
 
       <main className="home">
 
+
+        {/* =================================================
+            HERO
+            ================================================= */}
+
         <section className="home-hero">
 
           <div className="home-hero-number">
@@ -171,6 +229,7 @@ export default async function HomePage() {
 
             <h1>
               ¿Y ESTO
+
               <span>
                 DÓNDE VA?
               </span>
@@ -246,6 +305,10 @@ export default async function HomePage() {
 
         </section>
 
+
+        {/* =================================================
+            DESTACADOS
+            ================================================= */}
 
         <section className="home-section home-featured-section">
 
@@ -357,8 +420,10 @@ export default async function HomePage() {
 
                         Ver ficha
 
-                        <b>
-                          →
+                        <b aria-hidden="true">
+                          <ArrowRightIcon
+                            size={17}
+                          />
                         </b>
 
                       </div>
@@ -374,6 +439,10 @@ export default async function HomePage() {
 
         </section>
 
+
+        {/* =================================================
+            EXPLORAR TODOS
+            ================================================= */}
 
         <section className="home-explore-section">
 
@@ -423,8 +492,10 @@ export default async function HomePage() {
             >
               Ver todos
 
-              <b>
-                →
+              <b aria-hidden="true">
+                <ArrowRightIcon
+                  size={18}
+                />
               </b>
             </Link>
 
@@ -437,6 +508,10 @@ export default async function HomePage() {
 
         </section>
 
+
+        {/* =================================================
+            AYUDA
+            ================================================= */}
 
         <section className="home-help-section">
 
@@ -494,8 +569,10 @@ export default async function HomePage() {
               </div>
 
 
-              <b>
-                →
+              <b aria-hidden="true">
+                <ArrowRightIcon
+                  size={22}
+                />
               </b>
 
             </Link>
@@ -530,8 +607,10 @@ export default async function HomePage() {
               </div>
 
 
-              <b>
-                →
+              <b aria-hidden="true">
+                <ArrowRightIcon
+                  size={22}
+                />
               </b>
 
             </Link>
@@ -540,6 +619,10 @@ export default async function HomePage() {
 
         </section>
 
+
+        {/* =================================================
+            FOOTER
+            ================================================= */}
 
         <footer className="home-footer home-footer-compact">
 
@@ -596,8 +679,8 @@ export default async function HomePage() {
                     contacto@reciclamores.org
                   </span>
 
-                  <span>
-                    ↗
+                  <span aria-hidden="true">
+                    <ExternalLinkIcon />
                   </span>
                 </a>
 
@@ -611,8 +694,8 @@ export default async function HomePage() {
                     @reciclamores.ong
                   </span>
 
-                  <span>
-                    ↗
+                  <span aria-hidden="true">
+                    <ExternalLinkIcon />
                   </span>
                 </a>
 
@@ -626,8 +709,8 @@ export default async function HomePage() {
                     Sitio de Reciclamores
                   </span>
 
-                  <span>
-                    ↗
+                  <span aria-hidden="true">
+                    <ExternalLinkIcon />
                   </span>
                 </a>
 
@@ -639,8 +722,10 @@ export default async function HomePage() {
                     Preguntas frecuentes
                   </span>
 
-                  <span>
-                    →
+                  <span aria-hidden="true">
+                    <ArrowRightIcon
+                      size={16}
+                    />
                   </span>
                 </Link>
 

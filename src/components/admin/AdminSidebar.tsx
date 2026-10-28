@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
 import {
   usePathname,
   useRouter,
@@ -166,8 +165,21 @@ export default function AdminSidebar() {
             Ver guía pública
           </span>
 
-          <b>
-            ↗
+          <b aria-hidden="true">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M7 17L17 7M9 7H17V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </b>
         </Link>
 
@@ -183,8 +195,21 @@ export default function AdminSidebar() {
             Cerrar sesión
           </span>
 
-          <b>
-            →
+          <b aria-hidden="true">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M5 12H19M14 7L19 12L14 17"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </b>
         </button>
 

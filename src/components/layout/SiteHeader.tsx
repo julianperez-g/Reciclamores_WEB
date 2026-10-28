@@ -10,6 +10,7 @@ export default function SiteHeader() {
       <div className="site-header-cloud site-header-cloud-two" />
       <div className="site-header-cloud site-header-cloud-three" />
 
+
       <div className="site-header-doodle site-header-doodle-one">
         ✦
       </div>
@@ -73,8 +74,21 @@ export default function SiteHeader() {
           >
             Reciclamores
 
-            <span>
-              ↗
+            <span aria-hidden="true">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M7 17L17 7M9 7H17V15"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </span>
           </a>
 
